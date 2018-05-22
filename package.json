@@ -1,0 +1,23 @@
+{
+  "name": "cloudflare-ddns",
+  "version": "1.0.0",
+  "description": "cloudflare-ddns",
+  "main": "cloudflare.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterlee0127/cloudflare-ddns.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterlee0127/cloudflare-ddns/issues"
+  },
+  "homepage": "https://github.com/peterlee0127/cloudflare-ddns#readme",
+  "dependencies": {
+    "external-ip": "^2.0.3",
+    "request": "^2.87.0"
+  }
+}
