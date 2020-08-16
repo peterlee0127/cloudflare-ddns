@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/peterlee0127/cloudflare-ddns#readme",
   "dependencies": {
-    "external-ip": "^2.0.3",
-    "request": "^2.87.0"
+    "axios": "^0.19.2",
+    "external-ip": "^2.0.3"
   }
 }
