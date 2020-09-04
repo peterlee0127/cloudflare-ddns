@@ -97,7 +97,7 @@ function updateRecord(records) {
 			'name': result.name,
 			'type': result.type,
 			'content': result.content,
-			'proxied': proxied
+			'proxied': result.proxied
 		});
 	});
 //    request.put(options,function(error,response,body){
