@@ -23,10 +23,10 @@ jobs:
     - run: sudo docker build -t cloudflare-ddns .
     - name: Push to GitHub Packages
       uses: docker/build-push-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: peterlee0127/cloudflare-ddns/cloudflare-ddns
-          tag_with_ref: true
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: peterlee0127/cloudflare-ddns/cloudflare-ddns
+        tag_with_ref: true
 
