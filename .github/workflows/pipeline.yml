@@ -31,12 +31,9 @@ jobs:
       run: docker tag cloudflare-ddns ${{ secrets.DOCKER_USERNAME }}/cloudflare-ddns
     - name: Push Image to Docker Hub
       run: docker push ${{ secrets.DOCKER_USERNAME }}/cloudflare-ddns
-    - name: Push to GitHub Packages
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ github.actor }}
-        password: ${{ secrets.CR_PAT }}
-        registry: docker.pkg.github.com
-        repository: peterlee0127/cloudflare-ddns/cloudflare-ddns
-        tag_with_ref: true
-
+    - name: Login to GitHub Packages
+      run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u USERNAME --password-stdin
+    - name: Tag to Github Packages
+      run: docker tag cloudflare-ddns ghcr.io/${{ github.actor }}/cloudflare-ddns
+    - name: Push to Github Packages
+      run: docker push ghcr.io/${{ github.actor }}/cloudflare-ddns 
