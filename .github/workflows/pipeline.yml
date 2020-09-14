@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        # node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -30,6 +31,12 @@ jobs:
       run: docker tag cloudflare-ddns ${{ secrets.DOCKER_USERNAME }}/cloudflare-ddns
     - name: Push Image to Docker Hub
       run: docker push ${{ secrets.DOCKER_USERNAME }}/cloudflare-ddns
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.CR_PAT }}
     
 
 
