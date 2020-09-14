@@ -2,9 +2,15 @@
 const getIP = require('external-ip')();
 const axios = require('axios');
 const config = require('./config.json');
-const domain = config.domain;
-const email = config.email;
-const key = config.key;
+let domain = config.domain;
+let email = config.email;
+let key = config.key;
+if(process.env.domain) {
+    domain = process.env.domain;
+    email = process.env.email;
+    key = process.env.key;
+
+}
 
 const api = 'https://api.cloudflare.com/client/v4/';
 const headers = {
@@ -100,10 +106,6 @@ function updateRecord(records) {
 			'proxied': result.proxied
 		});
 	});
-//    request.put(options,function(error,response,body){
-
-//    	console.dir(body,{depth:null});
-//    });
 
  });
 }
