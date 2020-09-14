@@ -37,6 +37,10 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.CR_PAT }}
+    - name: Tag to GHCR 
+      run:  docker tag cloudflare-ddns ghcr/${{ github.repository_owner }}/cloudflare-ddns 
+    - name: Push to GHCR
+      run: docker push ghcr/${{ github.repository_owner }}/cloudflare-ddns  
     
 
 
