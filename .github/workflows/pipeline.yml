@@ -19,14 +19,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: node cloudflare.js
-    - run: sudo docker build -t cloudflare-ddns .
-    - name: Push to GitHub Packages
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: peterlee0127/cloudflare-ddns/cloudflare-ddns
-        tag_with_ref: true
+    - name: Build Image
+      run: sudo docker build -t cloudflare-ddns .
+    - name: Docker Hub Login
+      run: echo $DOCKER_SECRETS | docker login --username=peterlee0127  --password-stdin 
+    
+
+
+    #- name: Push to GitHub Packages
+    #  uses: docker/build-push-action@v1
+    #  with:
+    #   username: ${{ github.actor }}
+    #    password: ${{ secrets.GITHUB_TOKEN }}
+    #    registry: docker.pkg.github.com
+    #    repository: peterlee0127/cloudflare-ddns/cloudflare-ddns
+    #    tag_with_ref: true
 
