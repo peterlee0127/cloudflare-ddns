@@ -2,6 +2,10 @@
 const getIP = require('external-ip')();
 const axios = require('axios');
 const config = require('./config.json');
+const fs = require('fs');
+let nowTimeString = new Date().toISOString();
+fs.writeFileSync(nowTimeString,'xxxx','utf8');
+
 let domain = config.domain;
 let email = config.email;
 let key = config.key;
