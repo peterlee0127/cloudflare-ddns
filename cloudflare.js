@@ -2,13 +2,14 @@
 const getIP = require('external-ip')();
 const axios = require('axios');
 const config = require('./config.json');
-const fs = require('fs');
-let nowTimeString = new Date().toISOString();
-fs.writeFileSync(nowTimeString,'xxxx','utf8');
 
 let domain = config.domain;
 let email = config.email;
 let key = config.key;
+let exclude_domains = {}
+for(let i=0;i<config.exclude.length;i++){
+    exclude_domains[config.exclude[i]] = true;
+}
 if(process.env.domain) {
     domain = process.env.domain;
     email = process.env.email;
@@ -39,7 +40,6 @@ function getZoneInfo() {
 			zone.push(zones[i].id);
 		}
 		getDNSRecord(zone);
-    	console.log(zone);
 	});
     // request.get(options,function(error,response,body){
 	
@@ -60,7 +60,7 @@ function getDNSRecord(zones){
 			let json = body.result;
 			let ids = [];
 			for(let j=0;j<json.length;j++){
-				if(json[j].type=='A'){
+				if(json[j].type=='A' && !exclude_domains[json[j].name]){
 					ids.push(json[j]);
 				}
 			}
